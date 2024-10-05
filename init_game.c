@@ -6,7 +6,7 @@
 /*   By: tbolsako <tbolsako@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 17:02:34 by tbolsako          #+#    #+#             */
-/*   Updated: 2024/10/05 18:47:26 by tbolsako         ###   ########.fr       */
+/*   Updated: 2024/10/05 19:47:08 by tbolsako         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,19 +16,19 @@ static int	load_images(t_game *game, t_render *render)
 {
 	mlx_texture_t	*texture;
 
-	texture = mlx_load_xpm42("...");
+	texture = mlx_load_png("assets/player.png");
 	game->img_player = mlx_texture_to_image(render->mlx, texture);
 	mlx_delete_texture(texture);
-	texture = mlx_load_xpm42("...");
+	texture = mlx_load_png("assets/wall.png");
 	game->img_wall = mlx_texture_to_image(render->mlx, texture);
 	mlx_delete_texture(texture);
-	texture = mlx_load_xpm42("...");
+	texture = mlx_load_png("assets/collectible.png");
 	game->img_collectibles = mlx_texture_to_image(render->mlx, texture);
 	mlx_delete_texture(texture);
-	texture = mlx_load_xpm42("...");
+	texture = mlx_load_png("assets/exit.png");
 	game->img_exit = mlx_texture_to_image(render->mlx, texture);
 	mlx_delete_texture(texture);
-	texture = mlx_load_xpm42("...");
+	texture = mlx_load_png("assets/empty.png");
 	game->img_empty = mlx_texture_to_image(render->mlx, texture);
 	mlx_delete_texture(texture);
 	return (game->img_player && game->img_wall && game->img_collectibles

@@ -6,7 +6,7 @@
 /*   By: tbolsako <tbolsako@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 16:22:58 by tbolsako          #+#    #+#             */
-/*   Updated: 2024/10/05 18:49:06 by tbolsako         ###   ########.fr       */
+/*   Updated: 2024/10/05 20:05:07 by tbolsako         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,10 @@ int			check_char(t_game *game, char c, int i, t_map_check *check);
 // game initialization
 
 int			init_game(t_game *game, t_render *render, const char *map_file);
+
+// game rendering
+
+void		render_game(t_game *game, t_render *render);
 
 // utils
 
