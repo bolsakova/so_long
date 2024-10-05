@@ -6,7 +6,7 @@
 /*   By: tbolsako <tbolsako@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 16:22:58 by tbolsako          #+#    #+#             */
-/*   Updated: 2024/10/05 18:29:49 by tbolsako         ###   ########.fr       */
+/*   Updated: 2024/10/05 18:49:06 by tbolsako         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,10 @@ int			read_map_line(t_game *game, char *line, int i);
 int			allocate_visited(t_game *game, char ***visited);
 int			check_horizontal_walls(t_game *game);
 int			check_char(t_game *game, char c, int i, t_map_check *check);
+
+// game initialization
+
+int			init_game(t_game *game, t_render *render, const char *map_file);
 
 // utils
 
