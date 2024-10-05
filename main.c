@@ -6,7 +6,7 @@
 /*   By: tbolsako <tbolsako@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 16:30:36 by tbolsako          #+#    #+#             */
-/*   Updated: 2024/10/05 16:38:47 by tbolsako         ###   ########.fr       */
+/*   Updated: 2024/10/05 17:00:27 by tbolsako         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,6 @@ static void	check_args(int ac, char **av)
 		ft_printf("Error: Invalid file extension\n");
 		exit(EXIT_FAILURE);
 	}
-}
-
-static void	game_loop(void *param)
-{
-	t_game	*game;
-
-	game = (t_game *)param;
-	render_map(game);
 }
 
 int	main(int ac, char *av[])
