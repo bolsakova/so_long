@@ -6,7 +6,7 @@
 /*   By: tbolsako <tbolsako@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 16:22:58 by tbolsako          #+#    #+#             */
-/*   Updated: 2024/10/05 20:05:07 by tbolsako         ###   ########.fr       */
+/*   Updated: 2024/11/06 13:46:49 by tbolsako         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,36 +37,38 @@
 // an empty space
 # define EMPTY '0'
 
-// game's structure
+// structure to hold game state
 typedef struct s_game
 {
-	char	**map_data;
-	int		map_length;
-	int		map_height;
-	int		player_pos_x;
-	int		player_pos_y;
-	int		collectibles;
-	int		collected;
-	int		game_over;
-	int		steps;
-	void	*img_player;
-	void	*img_wall;
-	void	*img_collectibles;
-	void	*img_exit;
-	void	*img_empty;
+	char	**map_data;			// 2D array for the map data
+	int		map_length;			// length of the map (num of columns)
+	int		map_height;			// height of the map (num of rows)
+	int		player_pos_x;		// player's x pos on the map
+	int		player_pos_y;		// player's y pos on the map
+	int		collectibles;		// total num of collectibles on the map
+	int		collected;			// num of collectibles collected by the player
+	int		game_over;			// flag to indicate if the game is over
+	int		steps;				// num of steps taken by the player
+	void	*img_player;		// pointer to the player's image
+	void	*img_wall;			// pointer to the wall's image
+	void	*img_collectibles;	// pointer to the collectible's image
+	void	*img_exit;			// pointer to the exit's image
+	void	*img_empty;			// pointer to the empty space's image
 }			t_game;
 
+// structure to hold map validation counts
 typedef struct s_map_check
 {
-	int		player_count;
-	int		exit_count;
-	int		collectibles;
+	int		player_count;	// count of players found in the map
+	int		exit_count;		// count of exits found in the map
+	int		collectibles;	// count of collectibles found in the map
 }			t_map_check;
 
+// structure to hold rendering state
 typedef struct s_render
 {
-	void	*mlx;
-	void	*win;
+	void	*mlx;	// pointer to the MLX instance
+	void	*win;	// pointer to the game window
 }			t_render;
 
 // main

@@ -6,7 +6,7 @@
 /*   By: tbolsako <tbolsako@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 17:26:15 by tbolsako          #+#    #+#             */
-/*   Updated: 2024/10/05 17:58:01 by tbolsako         ###   ########.fr       */
+/*   Updated: 2024/10/07 11:28:31 by tbolsako         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ int	flood_fill(t_game *game, int x, int y, char **visited)
 	visited[y][x] = 1;
 	if (game->map_data[y][x] == EXIT)
 		return (1);
-	return (flood_fill(game, x + 1, y, visited) 
-		|| flood_fill(game, x - 1, y, visited) 
+	return (flood_fill(game, x + 1, y, visited)
+		|| flood_fill(game, x - 1, y, visited)
 		|| flood_fill(game, x, y + 1, visited)
 		|| flood_fill(game, x, y - 1, visited));
 }
