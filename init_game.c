@@ -6,7 +6,7 @@
 /*   By: tbolsako <tbolsako@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 17:02:34 by tbolsako          #+#    #+#             */
-/*   Updated: 2024/11/06 14:08:19 by tbolsako         ###   ########.fr       */
+/*   Updated: 2024/11/08 14:22:58 by tbolsako         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ static int	init_render(t_game *game, t_render *render)
 int	init_game(t_game *game, t_render *render, const char *map_file)
 {
 	ft_memset(game, 0, sizeof(t_game)); // clear the game structure
+	game->render = render; // set the render field
 	// parse the map file and initialize the game state
 	if (!parse_map(game, map_file))
 	{

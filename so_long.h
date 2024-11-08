@@ -6,7 +6,7 @@
 /*   By: tbolsako <tbolsako@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 16:22:58 by tbolsako          #+#    #+#             */
-/*   Updated: 2024/11/06 13:46:49 by tbolsako         ###   ########.fr       */
+/*   Updated: 2024/11/08 14:17:29 by tbolsako         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,23 +37,30 @@
 // an empty space
 # define EMPTY '0'
 
+# define KEY_UP		126 // up arrow key
+# define KEY_DOWN	125 // down arrow key
+# define KEY_LEFT	123 // left arrow key
+# define KEY_RIGHT	124 // right arrow key
+# define KEY_ESC	53	// escape arrow key
+
 // structure to hold game state
 typedef struct s_game
 {
-	char	**map_data;			// 2D array for the map data
-	int		map_length;			// length of the map (num of columns)
-	int		map_height;			// height of the map (num of rows)
-	int		player_pos_x;		// player's x pos on the map
-	int		player_pos_y;		// player's y pos on the map
-	int		collectibles;		// total num of collectibles on the map
-	int		collected;			// num of collectibles collected by the player
-	int		game_over;			// flag to indicate if the game is over
-	int		steps;				// num of steps taken by the player
-	void	*img_player;		// pointer to the player's image
-	void	*img_wall;			// pointer to the wall's image
-	void	*img_collectibles;	// pointer to the collectible's image
-	void	*img_exit;			// pointer to the exit's image
-	void	*img_empty;			// pointer to the empty space's image
+	char		**map_data;			// 2D array for the map data
+	int			map_length;			// length of the map (num of columns)
+	int			map_height;			// height of the map (num of rows)
+	int			player_pos_x;		// player's x pos on the map
+	int			player_pos_y;		// player's y pos on the map
+	int			collectibles;		// total num of collectibles on the map
+	int			collected;			// num of collectibles collected by the player
+	int			game_over;			// flag to indicate if the game is over
+	int			steps;				// num of steps taken by the player
+	void		*img_player;		// pointer to the player's image
+	void		*img_wall;			// pointer to the wall's image
+	void		*img_collectibles;	// pointer to the collectible's image
+	void		*img_exit;			// pointer to the exit's image
+	void		*img_empty;			// pointer to the empty space's image
+	t_render	*render;			// pointer to the rendering context
 }			t_game;
 
 // structure to hold map validation counts
