@@ -6,7 +6,7 @@
 /*   By: tbolsako <tbolsako@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 19:48:50 by tbolsako          #+#    #+#             */
-/*   Updated: 2024/11/08 14:35:07 by tbolsako         ###   ########.fr       */
+/*   Updated: 2024/11/08 20:03:33 by tbolsako         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 // function to render a single tile based on its type
 void	render_tile(t_game *game, t_render *render, int x, int y)
 {
-	mlx_image_t	*img; // pointer to the image to render
-	char		tile;
+	char	tile;
 
+	mlx_image_t *img; // pointer to the image to render
 	img = NULL;
 	tile = game->map_data[y][x]; // get the tile character
 	// determine which image to use based on the tile type
@@ -26,9 +26,9 @@ void	render_tile(t_game *game, t_render *render, int x, int y)
 	else if (tile == COLLECTIBLE)
 		img = game->img_collectibles; // collectible image
 	else if (tile == EXIT)
-		img = game->img_exit; // exit image
+		img = game->img_exit;                 // exit image
 	else if (tile == EMPTY || tile == PLAYER) // empty space or player
-		img = game->img_empty; // empty space image
+		img = game->img_empty;                // empty space image
 	// render the image to the window if it's valid
 	if (img)
 		mlx_image_to_window(render->mlx, img, x * TILE_SIZE, y * TILE_SIZE);
@@ -64,11 +64,9 @@ void	render_map(t_game *game, t_render *render)
 // main rendering function
 void	render_game(t_game *game, t_render *render)
 {
-	mlx_clear_window(render->mlx); // clear the previous frame
-	// mlx_delete_image(render->mlx, game->img_player);
-	// game->img_player = mlx_new_image(render->mlx, TILE_SIZE, TILE_SIZE);
-	render_map(game, render); // render the map
-	render_player(game, render); // render the player
-	// optionally, display the num of steps taken
+	load_textures(game);
+	render_textures(game, render);
+	render_map(game, render);
+	render_player(game, render);
 	mlx_put_string(render->mlx, ft_itoa(game->steps), 10, 10);
 }

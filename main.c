@@ -6,7 +6,7 @@
 /*   By: tbolsako <tbolsako@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 16:30:36 by tbolsako          #+#    #+#             */
-/*   Updated: 2024/11/08 16:05:15 by tbolsako         ###   ########.fr       */
+/*   Updated: 2024/11/08 21:04:56 by tbolsako         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,10 @@ int	main(int ac, char *av[])
 		exit(EXIT_FAILURE);
 	}
 	// set up the game loop to continuously render the game
+	render_game(&game, &render);
 	mlx_key_hook(render.mlx, handle_keypress, &game);
-	mlx_loop(render.mlx);    // start the MLX event loop
+	mlx_loop(render.mlx); // start the MLX event loop
+	mlx_terminate(render.mlx);
 	cleanup(&game, &render); // clean up resources before exiting
 	return (EXIT_SUCCESS);   // return success status
 }
