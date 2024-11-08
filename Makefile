@@ -6,18 +6,19 @@
 #    By: tbolsako <tbolsako@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/03 16:10:45 by tbolsako          #+#    #+#              #
-#    Updated: 2024/10/03 16:13:17 by tbolsako         ###   ########.fr        #
+#    Updated: 2024/11/08 15:44:34 by tbolsako         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = so_long
-SRC =	
+SRC = main.c cleanup.c game_loop.c init_game.c map_parser.c map_parser_helper.c \
+		pl_movement.c render.c utils.c
 OBJECTS = $(SRC:.c=.o)
-FLAGS = -Wall -Wextra -Werror -g
+FLAGS = -Wall -Wextra -Werror
 CC = cc
 
 GET_NEXT_LINE_DIR = get_next_line
-PRINTF_DIR = ft_printf
+PRINTF_DIR = printf
 LIBFT_DIR = libft
 
 LIBFT = $(LIBFT_DIR)/libft.a

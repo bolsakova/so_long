@@ -6,7 +6,7 @@
 /*   By: tbolsako <tbolsako@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 14:04:08 by tbolsako          #+#    #+#             */
-/*   Updated: 2024/11/08 14:27:15 by tbolsako         ###   ########.fr       */
+/*   Updated: 2024/11/08 16:04:53 by tbolsako         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 // function to handle player movement
 void	move_player(t_game *game, int new_x, int new_y)
 {
+	if (game->map_data[new_y][new_x] == EXIT)
+		game->game_over = 1; // set game over flag
 	// check if the new pos is within bounds and not a wall
 	if (game->map_data[new_y][new_x] != WALL)
 	{
@@ -32,30 +34,24 @@ void	move_player(t_game *game, int new_x, int new_y)
 }
 
 // function to handle key presses
-int	handle_keypress(int keycode, t_game *game)
+void	handle_keypress(mlx_key_data_t keydata, void *param)
 {
-	int	new_x;
-	int	new_y;
+	t_game	*game;
 
-	// check for esc key to exit the game
-	if (keycode = KEY_ESC)
-	{
+	game = (t_game *)param;
+	// check for ESC key to exit the game
+	if (keydata.key == MLX_KEY_ESCAPE && keydata.action == MLX_PRESS)
 		mlx_close_window(game->render->mlx);
-		return (0);
+	// handle other key presses for player movement
+	if (keydata.action == MLX_PRESS)
+	{
+		if (keydata.key == MLX_KEY_UP)
+			move_player(game, game->player_pos_x, game->player_pos_y - 1);
+		else if (keydata.key == MLX_KEY_DOWN)
+			move_player(game, game->player_pos_x, game->player_pos_y + 1);
+		else if (keydata.key == MLX_KEY_LEFT)
+			move_player(game, game->player_pos_x - 1, game->player_pos_y);
+		else if (keydata.key == MLX_KEY_RIGHT)
+			move_player(game, game->player_pos_x + 1, game->player_pos_y);
 	}
-	// determine the new pos based on the key pressed
-	new_x = game->player_pos_x;
-	new_y = game->player_pos_y;
-	if (keycode == KEY_UP)
-		new_y--; // move up
-	if (keycode == KEY_DOWN)
-		new_y++; // move down
-	if (keycode == KEY_LEFT)
-		new_x--; // move left
-	if (keycode == KEY_RIGHT)
-		new_x++; // move right
-	
-	// move the player to the new pos
-	move_player(game, new_x, new_y);
-	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: tbolsako <tbolsako@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 16:30:36 by tbolsako          #+#    #+#             */
-/*   Updated: 2024/11/06 13:39:56 by tbolsako         ###   ########.fr       */
+/*   Updated: 2024/11/08 16:05:15 by tbolsako         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,8 @@ static void	check_args(int ac, char **av)
 
 int	main(int ac, char *av[])
 {
-	t_game		game; // declare a game structure to hold game state
-	t_render	render; // declare a render structure to hold rendering state
-
+	t_game game;        // declare a game structure to hold game state
+	t_render render;    // declare a render structure to hold rendering state
 	check_args(ac, av); // validate command-line args
 	// initialize the game with the provided map file
 	if (!init_game(&game, &render, av[1]))
@@ -41,8 +40,8 @@ int	main(int ac, char *av[])
 		exit(EXIT_FAILURE);
 	}
 	// set up the game loop to continuously render the game
-	mlx_loop_hook(render.mlx, (void *)&game_loop, &game);
-	mlx_loop(render.mlx); // start the MLX event loop
+	mlx_key_hook(render.mlx, handle_keypress, &game);
+	mlx_loop(render.mlx);    // start the MLX event loop
 	cleanup(&game, &render); // clean up resources before exiting
-	return (EXIT_SUCCESS); // return success status
+	return (EXIT_SUCCESS);   // return success status
 }

@@ -6,7 +6,7 @@
 /*   By: tbolsako <tbolsako@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 13:14:50 by tbolsako          #+#    #+#             */
-/*   Updated: 2024/05/09 18:24:46 by tbolsako         ###   ########.fr       */
+/*   Updated: 2024/11/08 15:46:23 by tbolsako         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ char	*ft_strjoin(char const *buffer, char const *tmp)
 		return (NULL);
 	i = 0;
 	j = 0;
-	k = ft_strlen(buffer) + ft_strlen(tmp);
+	k = f_strlen(buffer) + f_strlen(tmp);
 	final = (char *)malloc((k + 1) * sizeof(char));
 	if (!final)
 		return (NULL);
@@ -49,7 +49,7 @@ char	*ft_strchr(const char *buffer, int a)
 	return ((char *)buffer);
 }
 
-int	ft_strlen(const char *str)
+int	f_strlen(const char *str)
 {
 	int	i;
 

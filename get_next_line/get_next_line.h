@@ -6,7 +6,7 @@
 /*   By: tbolsako <tbolsako@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 13:15:13 by tbolsako          #+#    #+#             */
-/*   Updated: 2024/05/09 18:33:22 by tbolsako         ###   ########.fr       */
+/*   Updated: 2024/11/08 15:47:07 by tbolsako         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ char	*to_substract_line(char *buffer);
 void	to_upd_buffer(char *buffer);
 char	*ft_strjoin(char const *buffer, char const *tmp);
 char	*ft_strchr(const char *buffer, int a);
-int		ft_strlen(const char *str);
+int		f_strlen(const char *str);
 char	*ft_strdup(const char *str);
 
 #endif

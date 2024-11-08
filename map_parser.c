@@ -6,14 +6,14 @@
 /*   By: tbolsako <tbolsako@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 15:56:31 by tbolsako          #+#    #+#             */
-/*   Updated: 2024/11/06 14:02:34 by tbolsako         ###   ########.fr       */
+/*   Updated: 2024/11/08 15:33:52 by tbolsako         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
 // function to validate all characters in the map
-static int	validate_map_chars(t_game *game)
+int	validate_map_chars(t_game *game)
 {
 	int			i;
 	t_map_check	check;
@@ -34,7 +34,7 @@ static int	validate_map_chars(t_game *game)
 }
 
 // function to validate  the structure of the map
-static int	validate_map_structure(t_game *game)
+int	validate_map_structure(t_game *game)
 {
 	int	i;
 
@@ -51,7 +51,7 @@ static int	validate_map_structure(t_game *game)
 }
 
 // function to validate if there is a valid path from the player to the exit
-static int	validate_path(t_game *game)
+int	validate_path(t_game *game)
 {
 	char	**visited;	// array to track visited tiles
 	int		result;
@@ -68,7 +68,7 @@ static int	validate_path(t_game *game)
 }
 
 // function to read the map file and populate the game structure
-static int	read_map_file(t_game *game, const char *filename)
+int	read_map_file(t_game *game, const char *filename)
 {
 	char	*line;	// variable to hold each line read from the file
 	int		fd;		// file descriptor

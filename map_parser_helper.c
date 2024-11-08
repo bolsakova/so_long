@@ -6,7 +6,7 @@
 /*   By: tbolsako <tbolsako@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 18:12:48 by tbolsako          #+#    #+#             */
-/*   Updated: 2024/11/06 14:01:18 by tbolsako         ###   ########.fr       */
+/*   Updated: 2024/11/08 14:48:59 by tbolsako         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ int	read_map_line(t_game *game, char *line, int i)
 	else if (line_length != game->map_length)
 		return (0);
 	game->map_data[i] = ft_strdup(line);
+	if (game->map_data[i] == NULL)
+		return (0);
 	return (game->map_data[i] != NULL);
 }
 

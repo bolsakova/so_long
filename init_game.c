@@ -6,7 +6,7 @@
 /*   By: tbolsako <tbolsako@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 17:02:34 by tbolsako          #+#    #+#             */
-/*   Updated: 2024/11/08 14:22:58 by tbolsako         ###   ########.fr       */
+/*   Updated: 2024/11/08 15:33:04 by tbolsako         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static int	load_images(t_game *game, t_render *render)
 	game->img_exit = mlx_texture_to_image(render->mlx, texture);
 	mlx_delete_texture(texture);
 	// load empty space image
-	texture = mlx_load_png("assets/empty.png");
+	texture = mlx_load_png("assets/background.png");
 	game->img_empty = mlx_texture_to_image(render->mlx, texture);
 	mlx_delete_texture(texture);
 	// return success if all images are loaded
@@ -43,7 +43,7 @@ static int	load_images(t_game *game, t_render *render)
 }
 
 // function to init the rendering context
-static int	init_render(t_game *game, t_render *render)
+int	init_render(t_game *game, t_render *render)
 {
 	// init the MLX window with the size based on the map dimensions
 	render->mlx = mlx_init(game->map_length * TILE_SIZE, game->map_height

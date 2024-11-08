@@ -6,14 +6,14 @@
 /*   By: tbolsako <tbolsako@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 19:48:50 by tbolsako          #+#    #+#             */
-/*   Updated: 2024/11/06 14:13:59 by tbolsako         ###   ########.fr       */
+/*   Updated: 2024/11/08 14:35:07 by tbolsako         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
 // function to render a single tile based on its type
-static void	render_tile(t_game *game, t_render *render, int x, int y)
+void	render_tile(t_game *game, t_render *render, int x, int y)
 {
 	mlx_image_t	*img; // pointer to the image to render
 	char		tile;
@@ -35,14 +35,14 @@ static void	render_tile(t_game *game, t_render *render, int x, int y)
 }
 
 // function to render the player at their current pos
-static void	render_player(t_game *game, t_render *render)
+void	render_player(t_game *game, t_render *render)
 {
 	mlx_image_to_window(render->mlx, game->img_player, game->player_pos_x
 		* TILE_SIZE, game->player_pos_y * TILE_SIZE);
 }
 
 // function to render the entire map
-static void	render_map(t_game *game, t_render *render)
+void	render_map(t_game *game, t_render *render)
 {
 	int	x;
 	int	y;
