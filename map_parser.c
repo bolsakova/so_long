@@ -6,7 +6,7 @@
 /*   By: tbolsako <tbolsako@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 15:56:31 by tbolsako          #+#    #+#             */
-/*   Updated: 2024/11/08 21:05:49 by tbolsako         ###   ########.fr       */
+/*   Updated: 2024/11/10 16:30:11 by tbolsako         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,10 @@ int	validate_map_chars(t_game *game)
 {
 	int			i;
 	t_map_check	check;
+	int			j;
 
 	i = 0;
+	game->collectibles = 0;
 	ft_memset(&check, 0, sizeof(t_map_check)); // initialize the check structure
 	while (i < game->map_height * game->map_length)
 	{
@@ -28,7 +30,20 @@ int	validate_map_chars(t_game *game)
 			return (0); // return 0 if an invalid character is found
 		i++;
 	}
-	game->collectibles = check.collectibles;
+	i = 0;
+	j = 0;
+	while (game->map_data[i])
+	{
+		j = 0;
+		while (game->map_data[i][j])
+		{
+			if (game->map_data[i][j] == 'C')
+				game->collectibles++;
+			j++;
+		}
+		i++;
+	}
+	// game->collectibles = check.collectibles;
 	// set the total collectibles in the game structure
 	return (check.player_count == 1 && check.exit_count == 1
 		&& check.collectibles > 0); // validate counts
@@ -94,7 +109,7 @@ int	read_map_file(t_game *game, const char *filename)
 	}
 	close(fd);
 	game->map_height = i; // set the height of the map
-	return (1); // return 1 if reading is successful
+	return (1);           // return 1 if reading is successful
 }
 
 // function to parse the map and validate its structure

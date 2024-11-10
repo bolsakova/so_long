@@ -6,7 +6,7 @@
 /*   By: tbolsako <tbolsako@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 16:22:58 by tbolsako          #+#    #+#             */
-/*   Updated: 2024/11/08 21:00:04 by tbolsako         ###   ########.fr       */
+/*   Updated: 2024/11/10 16:00:53 by tbolsako         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,14 @@ typedef struct s_render
 	void *win; // pointer to the game window
 }					t_render;
 
+// structure to hold map validation counts
+typedef struct s_map_check
+{
+	int player_count; // count of players found in the map
+	int exit_count;   // count of exits found in the map
+	int collectibles; // count of collectibles found in the map
+}					t_map_check;
+
 // structure to hold game state
 typedef struct s_game
 {
@@ -68,15 +76,8 @@ typedef struct s_game
 	mlx_image_t *img_empty;        // pointer to the empty space's image
 	t_render *render;              // pointer to the rendering context
 	mlx_t			*mlx;
+	t_map_check		*check;
 }					t_game;
-
-// structure to hold map validation counts
-typedef struct s_map_check
-{
-	int player_count; // count of players found in the map
-	int exit_count;   // count of exits found in the map
-	int collectibles; // count of collectibles found in the map
-}					t_map_check;
 
 // main
 

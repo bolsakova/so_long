@@ -6,7 +6,7 @@
 /*   By: tbolsako <tbolsako@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 16:30:36 by tbolsako          #+#    #+#             */
-/*   Updated: 2024/11/08 21:04:56 by tbolsako         ###   ########.fr       */
+/*   Updated: 2024/11/10 16:25:57 by tbolsako         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,9 @@ static void	check_args(int ac, char **av)
 
 int	main(int ac, char *av[])
 {
+	// int	i;
+	// int	j;
+
 	t_game game;        // declare a game structure to hold game state
 	t_render render;    // declare a render structure to hold rendering state
 	check_args(ac, av); // validate command-line args
@@ -39,11 +42,24 @@ int	main(int ac, char *av[])
 		ft_printf("Error: Failed to initialize the game\n");
 		exit(EXIT_FAILURE);
 	}
+	// i = 0;
+	// while (game.map_data[i])
+	// {
+	// 	j = 0;
+	// 	while (game.map_data[i][j])
+	// 	{
+	// 		printf("%c", game.map_data[i][j]);
+	// 		j++;
+	// 	}
+	// 	printf("\n");
+	// 	i++;
+	// }
 	// set up the game loop to continuously render the game
+	printf("\n%d\n", game.collectibles);
 	render_game(&game, &render);
 	mlx_key_hook(render.mlx, handle_keypress, &game);
 	mlx_loop(render.mlx); // start the MLX event loop
-	mlx_terminate(render.mlx);
-	cleanup(&game, &render); // clean up resources before exiting
-	return (EXIT_SUCCESS);   // return success status
+	cleanup(&game, &render);
+	mlx_terminate(render.mlx); // clean up resources before exiting
+	return (EXIT_SUCCESS);     // return success status
 }

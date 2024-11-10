@@ -6,7 +6,7 @@
 /*   By: tbolsako <tbolsako@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 14:04:08 by tbolsako          #+#    #+#             */
-/*   Updated: 2024/11/08 21:10:56 by tbolsako         ###   ########.fr       */
+/*   Updated: 2024/11/10 16:37:47 by tbolsako         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,7 @@ void	move_player(t_game *game, int new_x, int new_y)
 	if (new_x < 0 || new_y < 0 || new_x >= game->map_length
 		|| new_y >= game->map_height)
 		return ; // Prevent moving out of bounds
-	if (game->map_data[new_y][new_x] == EXIT)
-		game->game_over = 1; // set game over flag
+	// set game over flag
 	// check if the new pos is within bounds and not a wall
 	if (game->map_data[new_y][new_x] != WALL)
 	{
@@ -34,6 +33,15 @@ void	move_player(t_game *game, int new_x, int new_y)
 		game->player_pos_x = new_x;
 		game->player_pos_y = new_y;
 		game->steps++;
+	}
+	if (game->map_data[new_y][new_x] == EXIT)
+	{
+		printf("\nexit\n");
+		if (game->collectibles == 0)
+		{
+			game->game_over = 1;
+			mlx_close_window(game->render->mlx);
+		}
 	}
 }
 
