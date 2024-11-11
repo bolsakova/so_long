@@ -6,7 +6,7 @@
 /*   By: tbolsako <tbolsako@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 19:48:50 by tbolsako          #+#    #+#             */
-/*   Updated: 2024/11/08 20:03:33 by tbolsako         ###   ########.fr       */
+/*   Updated: 2024/11/11 07:15:16 by tbolsako         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,21 +15,19 @@
 // function to render a single tile based on its type
 void	render_tile(t_game *game, t_render *render, int x, int y)
 {
-	char	tile;
+	char		tile;
+	mlx_image_t	*img;
 
-	mlx_image_t *img; // pointer to the image to render
 	img = NULL;
-	tile = game->map_data[y][x]; // get the tile character
-	// determine which image to use based on the tile type
+	tile = game->map_data[y][x];
 	if (tile == WALL)
-		img = game->img_wall; // wall image
+		img = game->img_wall;
 	else if (tile == COLLECTIBLE)
-		img = game->img_collectibles; // collectible image
+		img = game->img_collectibles;
 	else if (tile == EXIT)
-		img = game->img_exit;                 // exit image
-	else if (tile == EMPTY || tile == PLAYER) // empty space or player
-		img = game->img_empty;                // empty space image
-	// render the image to the window if it's valid
+		img = game->img_exit;
+	else if (tile == EMPTY || tile == PLAYER)
+		img = game->img_empty;
 	if (img)
 		mlx_image_to_window(render->mlx, img, x * TILE_SIZE, y * TILE_SIZE);
 }
@@ -47,14 +45,13 @@ void	render_map(t_game *game, t_render *render)
 	int	x;
 	int	y;
 
-	// loop through each tile in the map
 	y = 0;
 	while (y < game->map_height)
 	{
 		x = 0;
 		while (x < game->map_length)
 		{
-			render_tile(game, render, x, y); // render each tile
+			render_tile(game, render, x, y);
 			x++;
 		}
 		y++;

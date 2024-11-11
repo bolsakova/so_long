@@ -6,7 +6,7 @@
 /*   By: tbolsako <tbolsako@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 17:02:34 by tbolsako          #+#    #+#             */
-/*   Updated: 2024/11/10 16:29:00 by tbolsako         ###   ########.fr       */
+/*   Updated: 2024/11/11 07:08:14 by tbolsako         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,21 +27,20 @@ int	init_game(t_game *game, t_render *render, const char *map_file)
 {
 	ft_memset(game, 0, sizeof(t_game));
 	game->render = render;
-	// parse the map file and initialize the game state
 	if (!parse_map(game, map_file))
 	{
 		ft_printf("Error: Invalid map\n");
 		return (0);
 	}
-	// initialize the rendering context
 	if (!init_render(game, render))
 	{
 		ft_printf("Error: Failed to initialize renderer\n");
-		return (0); // return 0 if initialization fails
+		return (0);
 	}
-	// set initial game state
-	game->collected = 0; // init collected items count
-	game->steps = 0;     // init steps count
-	game->game_over = 0; // init game over flag
-	return (1);          // return 1 if initialization is successful
+	load_textures(game);
+	render_textures(game, render);
+	game->collected = 0;
+	game->steps = 0;
+	game->game_over = 0;
+	return (1);
 }

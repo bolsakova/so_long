@@ -6,20 +6,11 @@
 /*   By: tbolsako <tbolsako@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 17:26:15 by tbolsako          #+#    #+#             */
-/*   Updated: 2024/11/08 20:00:08 by tbolsako         ###   ########.fr       */
+/*   Updated: 2024/11/11 06:36:52 by tbolsako         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-void	clean_textures(t_game *game)
-{
-	mlx_delete_texture(game->t_exit);
-	mlx_delete_texture(game->t_player);
-	mlx_delete_texture(game->t_wall);
-	mlx_delete_texture(game->t_empty);
-	mlx_delete_texture(game->t_collectibles);
-}
 
 mlx_image_t	*texture_to_image(t_game *game, char map_char)
 {

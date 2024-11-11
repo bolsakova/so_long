@@ -6,7 +6,7 @@
 /*   By: tbolsako <tbolsako@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 18:12:48 by tbolsako          #+#    #+#             */
-/*   Updated: 2024/11/08 14:48:59 by tbolsako         ###   ########.fr       */
+/*   Updated: 2024/11/11 06:59:13 by tbolsako         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,13 +63,12 @@ int	check_horizontal_walls(t_game *game)
 	j = 0;
 	while (j < game->map_length)
 	{
-		// check if the first and last rows are walls
-		if (game->map_data[0][j] != WALL || game->map_data[game->map_height
-			- 1][j] != WALL)
-			return (0); // return 0 if a wall is missing
+		if (game->map_data[0][j] != WALL 
+			|| game->map_data[game->map_height - 1][j] != WALL)
+			return (0);
 		j++;
 	}
-	return (1); // return 1 if a wall are intact
+	return (1);
 }
 
 // function to check individual characters in the map
@@ -77,15 +76,18 @@ int	check_char(t_game *game, char c, int i, t_map_check *check)
 {
 	if (c == PLAYER)
 	{
-		check->player_count++; // increment player count
-		game->player_pos_x = i % game->map_length; // set player's x pos
-		game->player_pos_y = i / game->map_length; // set player's y pos
+		check->player_count++;
+		game->player_pos_x = i % game->map_length;
+		game->player_pos_y = i / game->map_length;
 	}
 	else if (c == EXIT)
-		check->exit_count++; // increment exit count
+		check->exit_count++;
 	else if (c == COLLECTIBLE)
-		check->collectibles++; // increment collectibles count
+	{
+		printf("\nfound collectible\n");
+		check->collectibles++;
+	}
 	else if (c != WALL && c != EMPTY)
-		return (0); // return 0 if an invalid character is found
-	return (1); // return 1 if the character is valid
+		return (0);
+	return (1);
 }

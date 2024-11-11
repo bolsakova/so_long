@@ -6,7 +6,7 @@
 /*   By: tbolsako <tbolsako@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/07 16:20:31 by tbolsako          #+#    #+#             */
-/*   Updated: 2024/03/19 14:50:30 by tbolsako         ###   ########.fr       */
+/*   Updated: 2024/11/11 06:39:46 by tbolsako         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,3 @@ void	*ft_memset(void *str, int a, size_t len)
 	}
 	return (str);
 }
-// #include <stdio.h>
-
-// int	main(void)
-// {
-// 	char	str[10];
-
-// 	ft_memset(str, 'a', 7);
-// 	printf("%s\n", str);
-// 	return (0);
-// }
