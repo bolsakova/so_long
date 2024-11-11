@@ -6,7 +6,7 @@
 /*   By: tbolsako <tbolsako@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 17:02:34 by tbolsako          #+#    #+#             */
-/*   Updated: 2024/11/11 07:08:14 by tbolsako         ###   ########.fr       */
+/*   Updated: 2024/11/11 22:10:13 by tbolsako         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,14 @@ int	init_render(t_game *game, t_render *render)
 			* TILE_SIZE, "so_long", true);
 	if (!render->mlx)
 		return (0);
+	game->img_mlx = mlx_new_image(render->mlx, game->map_length * TILE_SIZE,
+			game->map_height * TILE_SIZE);
+	if (!game->img_mlx)
+	{
+		mlx_close_window(render->mlx);
+		return (0);
+	}
+	mlx_image_to_window(render->mlx, game->img_mlx, 0, 0);
 	return (1);
 }
 

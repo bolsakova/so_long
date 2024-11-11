@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cleanup.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tbolsako <tbolsako@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ryusupov <ryusupov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 14:40:12 by tbolsako          #+#    #+#             */
-/*   Updated: 2024/11/11 06:37:21 by tbolsako         ###   ########.fr       */
+/*   Updated: 2024/11/11 14:25:01 by ryusupov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	cleanup(t_game *game, t_render *render)
 	int	i;
 
 	i = 0;
-	while (i < game->map_height)
+	while (game->map_data && game->map_data[i])
 	{
 		free(game->map_data[i]);
 		i++;

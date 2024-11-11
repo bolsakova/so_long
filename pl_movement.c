@@ -6,7 +6,7 @@
 /*   By: tbolsako <tbolsako@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 14:04:08 by tbolsako          #+#    #+#             */
-/*   Updated: 2024/11/11 07:17:23 by tbolsako         ###   ########.fr       */
+/*   Updated: 2024/11/11 21:20:31 by tbolsako         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,5 +59,5 @@ void	handle_keypress(mlx_key_data_t keydata, void *param)
 		else if (keydata.key == MLX_KEY_D)
 			move_player(game, game->player_pos_x + 1, game->player_pos_y);
 	}
-	render_game(game, game->render);
+	// render_game(game, game->render);
 }

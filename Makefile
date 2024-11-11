@@ -6,7 +6,7 @@
 #    By: tbolsako <tbolsako@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/03 16:10:45 by tbolsako          #+#    #+#              #
-#    Updated: 2024/11/10 11:23:23 by tbolsako         ###   ########.fr        #
+#    Updated: 2024/11/11 21:39:20 by tbolsako         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,12 +25,17 @@ LIBFT = $(LIBFT_DIR)/libft.a
 GET_NEXT_LINE = $(GET_NEXT_LINE_DIR)/get_next_line.a
 PRINTF = $(PRINTF_DIR)/libftprintf.a
 
+#for macOS
+MLX42FLAGS      := -lglfw -framework Cocoa -framework OpenGL -framework IOKit
+#for Ubuntu:
+# MLX42FLAGS        := -lglfw -ldl -lGL
+
 MLX = MLX42/build/libmlx42.a
 
 all: $(NAME)
 
 $(MLX):
-	@git clone https://github.com/codam-coding-college/MLX42.git
+	@git clone https://github.com/codam-coding-college/MLX42.git MLX42
 	@cd MLX42 && cmake -B build && cmake --build build -j4
 
 $(PRINTF):
@@ -41,6 +46,7 @@ $(LIBFT):
 
 $(GET_NEXT_LINE):
 	make -C $(GET_NEXT_LINE_DIR)
+
 
 $(NAME): $(MLX) $(OBJECTS) $(LIBFT) $(PRINTF) $(GET_NEXT_LINE)
 	$(CC)  $(FLAGS) $(OBJECTS) $(LIBFT) $(PRINTF) $(GET_NEXT_LINE) $(MLX) -o $(NAME) -ldl -lglfw -lm -g

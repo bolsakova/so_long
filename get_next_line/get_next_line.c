@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tbolsako <tbolsako@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ryusupov <ryusupov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 13:15:04 by tbolsako          #+#    #+#             */
-/*   Updated: 2024/06/19 14:19:06 by tbolsako         ###   ########.fr       */
+/*   Updated: 2024/11/11 12:57:44 by ryusupov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,11 +69,11 @@ char	*to_read_file(int fd, char *buffer)
 	ssize_t	reading_bytes;
 	char	*tmp;
 
-	tmp = ft_strdup(buffer);
+	tmp = ft_strdupp(buffer);
 	if (!tmp)
 		return (NULL);
 	reading_bytes = 1;
-	while (reading_bytes > 0 && !ft_strchr(tmp, '\n'))
+	while (reading_bytes > 0 && !ft_strchrr(tmp, '\n'))
 	{
 		reading_bytes = read(fd, buffer, BUFFER_SIZE);
 		if (reading_bytes == -1)
@@ -86,7 +86,7 @@ char	*to_read_file(int fd, char *buffer)
 		if (reading_bytes == 0)
 			return (tmp);
 		tmp = to_join(tmp, buffer);
-		if (ft_strchr(tmp, '\n'))
+		if (ft_strchrr(tmp, '\n'))
 			break ;
 	}
 	return (tmp);

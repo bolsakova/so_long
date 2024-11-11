@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tbolsako <tbolsako@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ryusupov <ryusupov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 13:14:50 by tbolsako          #+#    #+#             */
-/*   Updated: 2024/11/08 15:46:23 by tbolsako         ###   ########.fr       */
+/*   Updated: 2024/11/11 12:57:01 by ryusupov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ char	*ft_strjoin(char const *buffer, char const *tmp)
 	return (final);
 }
 
-char	*ft_strchr(const char *buffer, int a)
+char	*ft_strchrr(const char *buffer, int a)
 {
 	while (*buffer != (char)a)
 	{
@@ -59,7 +59,7 @@ int	f_strlen(const char *str)
 	return (i);
 }
 
-char	*ft_strdup(const char *str)
+char	*ft_strdupp(const char *str)
 {
 	char	*dup;
 	size_t	len;

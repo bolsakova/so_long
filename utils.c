@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tbolsako <tbolsako@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ryusupov <ryusupov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 17:26:15 by tbolsako          #+#    #+#             */
-/*   Updated: 2024/11/11 06:36:52 by tbolsako         ###   ########.fr       */
+/*   Updated: 2024/11/11 15:46:37 by ryusupov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,21 +30,30 @@ mlx_image_t	*texture_to_image(t_game *game, char map_char)
 
 void	load_textures(t_game *game)
 {
-	game->t_exit = mlx_load_png("assets/exit.png");
-	game->t_player = mlx_load_png("assets/player.png");
-	game->t_collectibles = mlx_load_png("assets/collectible.png");
-	game->t_wall = mlx_load_png("assets/wall.png");
-	game->t_empty = mlx_load_png("assets/background.png");
+		game->t_exit = mlx_load_png("assets/exit.png");
+		game->t_player = mlx_load_png("assets/player.png");
+		game->t_collectibles = mlx_load_png("assets/collectible.png");
+		game->t_wall = mlx_load_png("assets/wall.png");
+		game->t_empty = mlx_load_png("assets/background.png");
 }
 
-void	render_textures(t_game *game, t_render *render)
+void render_textures(t_game *game, t_render *render)
 {
-	game->img_exit = mlx_texture_to_image(render->mlx, game->t_exit);
-	game->img_player = mlx_texture_to_image(render->mlx, game->t_player);
-	game->img_collectibles = mlx_texture_to_image(render->mlx,
-			game->t_collectibles);
-	game->img_wall = mlx_texture_to_image(render->mlx, game->t_wall);
-	game->img_empty = mlx_texture_to_image(render->mlx, game->t_empty);
+	if (!game->img_exit) {
+		 game->img_exit = mlx_texture_to_image(render->mlx, game->t_exit);
+	}
+	if (!game->img_player) {
+		game->img_player = mlx_texture_to_image(render->mlx, game->t_player);
+	}
+	if (!game->img_collectibles) {
+		game->img_collectibles = mlx_texture_to_image(render->mlx, game->t_collectibles);
+	}
+	if (!game->img_wall) {
+		game->img_wall = mlx_texture_to_image(render->mlx, game->t_wall);
+	}
+	if (!game->img_empty) {
+		game->img_empty = mlx_texture_to_image(render->mlx, game->t_empty);
+	}
 }
 
 int	flood_fill(t_game *game, int x, int y, char **visited)

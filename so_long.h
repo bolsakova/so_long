@@ -6,7 +6,7 @@
 /*   By: tbolsako <tbolsako@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 16:22:58 by tbolsako          #+#    #+#             */
-/*   Updated: 2024/11/11 06:52:07 by tbolsako         ###   ########.fr       */
+/*   Updated: 2024/11/11 22:25:37 by tbolsako         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@
 // structure to hold rendering state
 typedef struct s_render
 {
-	void			*mlx;
+	mlx_t			*mlx;
 	void			*win;
 }					t_render;
 
@@ -50,6 +50,7 @@ typedef struct s_map_check
 // structure to hold game state
 typedef struct s_game
 {
+	int				loaded;
 	char			**map_data;
 	int				map_length;
 	int				map_height;
@@ -64,6 +65,8 @@ typedef struct s_game
 	mlx_texture_t	*t_player;
 	mlx_texture_t	*t_empty;
 	mlx_texture_t	*t_collectibles;
+	mlx_image_t		*img_str;
+	mlx_image_t		*img_mlx;
 	mlx_image_t		*img_player;
 	mlx_image_t		*img_wall;
 	mlx_image_t		*img_collectibles;
@@ -97,10 +100,12 @@ int					check_char(t_game *game, char c, int i, t_map_check *check);
 
 // game rendering
 
-void				render_game(t_game *game, t_render *render);
+void				render_game(void *param);
 void				render_map(t_game *game, t_render *render);
 void				render_player(t_game *game, t_render *render);
 void				render_tile(t_game *game, t_render *render, int x, int y);
+void				img_to_img(mlx_image_t *dst, mlx_image_t *src, int x,
+						int y);
 
 // player movement
 
@@ -111,6 +116,7 @@ void				move_player(t_game *game, int new_x, int new_y);
 
 void				cleanup(t_game *game, t_render *render);
 void				clean_textures(t_game *game);
+void				free_array(char **map);
 
 // utils
 

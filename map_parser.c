@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_parser.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tbolsako <tbolsako@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ryusupov <ryusupov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 15:56:31 by tbolsako          #+#    #+#             */
-/*   Updated: 2024/11/11 07:05:09 by tbolsako         ###   ########.fr       */
+/*   Updated: 2024/11/11 12:54:09 by ryusupov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ int	validate_map_chars(t_game *game)
 {
 	int			i;
 	t_map_check	check;
-	int			j;
 
 	i = 0;
 	game->collectibles = 0;
@@ -27,19 +26,6 @@ int	validate_map_chars(t_game *game)
 		if (!check_char(game, game->map_data[i / game->map_length][i
 				% game->map_length], i, &check))
 			return (0);
-		i++;
-	}
-	i = 0;
-	j = 0;
-	while (game->map_data[i])
-	{
-		j = 0;
-		while (game->map_data[i][j])
-		{
-			if (game->map_data[i][j] == 'C')
-				game->collectibles++;
-			j++;
-		}
 		i++;
 	}
 	game->collectibles = check.collectibles;

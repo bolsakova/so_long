@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_parser_helper.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tbolsako <tbolsako@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ryusupov <ryusupov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 18:12:48 by tbolsako          #+#    #+#             */
-/*   Updated: 2024/11/11 06:59:13 by tbolsako         ###   ########.fr       */
+/*   Updated: 2024/11/11 12:54:02 by ryusupov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,10 @@ int	read_map_line(t_game *game, char *line, int i)
 		return (0);
 	game->map_data[i] = ft_strdup(line);
 	if (game->map_data[i] == NULL)
+	{
+		free(game->map_data[i]);
 		return (0);
+	}
 	return (game->map_data[i] != NULL);
 }
 
@@ -39,7 +42,10 @@ int	allocate_visited(t_game *game, char ***visited)
 	i = 0;
 	*visited = (char **)malloc(game->map_height * sizeof(char *));
 	if (!*visited)
+	{
+		free(*visited);
 		return (0);
+	}
 	while (i < game->map_height)
 	{
 		(*visited)[i] = (char *)ft_calloc(game->map_length, sizeof(char));
@@ -63,14 +69,13 @@ int	check_horizontal_walls(t_game *game)
 	j = 0;
 	while (j < game->map_length)
 	{
-		if (game->map_data[0][j] != WALL 
-			|| game->map_data[game->map_height - 1][j] != WALL)
+		if (game->map_data[0][j] != WALL || game->map_data[game->map_height
+			- 1][j] != WALL)
 			return (0);
 		j++;
 	}
 	return (1);
 }
-
 // function to check individual characters in the map
 int	check_char(t_game *game, char c, int i, t_map_check *check)
 {
@@ -84,7 +89,6 @@ int	check_char(t_game *game, char c, int i, t_map_check *check)
 		check->exit_count++;
 	else if (c == COLLECTIBLE)
 	{
-		printf("\nfound collectible\n");
 		check->collectibles++;
 	}
 	else if (c != WALL && c != EMPTY)
