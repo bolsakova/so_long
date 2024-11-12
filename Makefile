@@ -6,20 +6,21 @@
 #    By: tbolsako <tbolsako@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/03 16:10:45 by tbolsako          #+#    #+#              #
-#    Updated: 2024/11/11 21:39:20 by tbolsako         ###   ########.fr        #
+#    Updated: 2024/11/12 08:57:57 by tbolsako         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = so_long
-SRC = main.c cleanup.c init_game.c map_parser.c map_parser_helper.c \
-		pl_movement.c render.c utils.c
+SRC = src/main.c src/cleanup.c src/init_game.c src/map_parser.c \
+		src/map_parser_helper.c src/pl_movement.c src/render.c \
+		src/render_helper.c src/utils.c
 OBJECTS = $(SRC:.c=.o)
 FLAGS = -Wall -Wextra -Werror
 CC = cc
 
-GET_NEXT_LINE_DIR = get_next_line
-PRINTF_DIR = printf
-LIBFT_DIR = libft
+GET_NEXT_LINE_DIR = lib/get_next_line
+PRINTF_DIR = lib/printf
+LIBFT_DIR = lib/libft
 
 LIBFT = $(LIBFT_DIR)/libft.a
 GET_NEXT_LINE = $(GET_NEXT_LINE_DIR)/get_next_line.a
@@ -35,7 +36,7 @@ MLX = MLX42/build/libmlx42.a
 all: $(NAME)
 
 $(MLX):
-	@git clone https://github.com/codam-coding-college/MLX42.git MLX42
+	@git clone https://github.com/codam-coding-college/MLX42.git MLX42 || true
 	@cd MLX42 && cmake -B build && cmake --build build -j4
 
 $(PRINTF):
@@ -51,8 +52,8 @@ $(GET_NEXT_LINE):
 $(NAME): $(MLX) $(OBJECTS) $(LIBFT) $(PRINTF) $(GET_NEXT_LINE)
 	$(CC)  $(FLAGS) $(OBJECTS) $(LIBFT) $(PRINTF) $(GET_NEXT_LINE) $(MLX) -o $(NAME) -ldl -lglfw -lm -g
 
-%.o: %.c so_long.h
-	$(CC) $(FLAGS) -Imlx -c $< -o $@
+%.o: %.c includes/so_long.h
+	$(CC) $(FLAGS) -Iincludes -IMLX42/include -I$(LIBFT_DIR) -I$(PRINTF_DIR) -I$(GET_NEXT_LINE_DIR) -c $< -o $@
 
 clean:
 	rm -rf $(OBJECTS)
@@ -62,7 +63,7 @@ clean:
 	rm -rf MLX42
 
 fclean:	clean
-	rm -rf $(NAME) $(MLX)
+	rm -rf $(NAME)
 	make fclean -C $(PRINTF_DIR)
 	make fclean -C $(LIBFT_DIR)
 	make fclean -C $(GET_NEXT_LINE_DIR)
