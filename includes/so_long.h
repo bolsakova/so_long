@@ -6,7 +6,7 @@
 /*   By: tbolsako <tbolsako@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 16:22:58 by tbolsako          #+#    #+#             */
-/*   Updated: 2024/11/14 14:42:21 by tbolsako         ###   ########.fr       */
+/*   Updated: 2024/11/15 16:43:52 by tbolsako         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ typedef struct s_map_check
 typedef struct s_game
 {
 	char			**fill;
-	int				loaded;
 	char			**map_data;
 	int				map_length;
 	int				map_height;
@@ -81,9 +80,9 @@ typedef struct s_game
 
 // main
 
-void				flood_fill(t_game *map, int x, int y, char c);
-void				prepare_map_to_fill(t_game *str);
-void				find_not_filled_target(t_game *map, int width, int height);
+void				flood_fill(t_game *game, int x, int y, char c);
+void				prepare_map_to_fill(t_game *game);
+void				find_not_filled_target(t_game *game, int width, int height);
 
 // game initialization
 
