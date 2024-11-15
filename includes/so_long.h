@@ -6,7 +6,7 @@
 /*   By: tbolsako <tbolsako@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 16:22:58 by tbolsako          #+#    #+#             */
-/*   Updated: 2024/11/12 09:30:21 by tbolsako         ###   ########.fr       */
+/*   Updated: 2024/11/14 14:42:21 by tbolsako         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,12 +44,13 @@ typedef struct s_map_check
 {
 	int				player_count;
 	int				exit_count;
-	int				collectibles;
+	int				collectibles_count;
 }					t_map_check;
 
 // structure to hold game state
 typedef struct s_game
 {
+	char			**fill;
 	int				loaded;
 	char			**map_data;
 	int				map_length;
@@ -57,6 +58,7 @@ typedef struct s_game
 	int				player_pos_x;
 	int				player_pos_y;
 	int				collectibles;
+	int				total_collectibles;
 	int				collected;
 	int				game_over;
 	int				steps;
@@ -77,6 +79,12 @@ typedef struct s_game
 	t_map_check		*check;
 }					t_game;
 
+// main
+
+void				flood_fill(t_game *map, int x, int y, char c);
+void				prepare_map_to_fill(t_game *str);
+void				find_not_filled_target(t_game *map, int width, int height);
+
 // game initialization
 
 int					init_game(t_game *game, t_render *render,
@@ -87,14 +95,12 @@ int					init_render(t_game *game, t_render *render);
 
 int					parse_map(t_game *game, const char *filename);
 int					read_map_file(t_game *game, const char *filename);
-int					validate_path(t_game *game);
 int					validate_map_structure(t_game *game);
 int					validate_map_chars(t_game *game);
 
 // map parser helper
 
 int					read_map_line(t_game *game, char *line, int i);
-int					allocate_visited(t_game *game, char ***visited);
 int					check_horizontal_walls(t_game *game);
 int					check_char(t_game *game, char c, int i, t_map_check *check);
 
@@ -104,6 +110,9 @@ void				render_game(void *param);
 void				render_map(t_game *game, t_render *render);
 void				render_player(t_game *game, t_render *render);
 void				render_tile(t_game *game, t_render *render, int x, int y);
+
+// render helper
+
 void				img_to_img(mlx_image_t *dst, mlx_image_t *src, int x,
 						int y);
 
@@ -117,12 +126,12 @@ void				move_player(t_game *game, int new_x, int new_y);
 void				cleanup(t_game *game, t_render *render);
 void				clean_textures(t_game *game);
 void				free_array(char **map);
+void				free_array_1(char **map);
 
 // utils
 
 mlx_image_t			*texture_to_image(t_game *game, char map_char);
 void				load_textures(t_game *game);
 void				render_textures(t_game *game, t_render *render);
-int					flood_fill(t_game *game, int x, int y, char **visit);
 
 #endif

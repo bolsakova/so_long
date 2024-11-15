@@ -6,7 +6,7 @@
 /*   By: tbolsako <tbolsako@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 16:30:36 by tbolsako          #+#    #+#             */
-/*   Updated: 2024/11/12 12:05:11 by tbolsako         ###   ########.fr       */
+/*   Updated: 2024/11/14 14:47:42 by tbolsako         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,9 @@ int	main(int ac, char *av[])
 		ft_printf("Error\nFailed to initialize the game\n");
 		free_array(game.map_data);
 	}
+	prepare_map_to_fill(&game);
+	flood_fill(&game, game.player_pos_x, game.player_pos_y, 'X');
+	find_not_filled_target(&game, game.map_length, game.map_height);
 	mlx_set_setting(MLX_STRETCH_IMAGE, true);
 	load_textures(&game);
 	render_textures(&game, &render);

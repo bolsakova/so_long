@@ -6,7 +6,7 @@
 /*   By: tbolsako <tbolsako@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 15:56:31 by tbolsako          #+#    #+#             */
-/*   Updated: 2024/11/12 08:19:13 by tbolsako         ###   ########.fr       */
+/*   Updated: 2024/11/14 14:38:47 by tbolsako         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,14 @@ int	validate_map_chars(t_game *game)
 	ft_memset(&check, 0, sizeof(t_map_check));
 	while (i < game->map_height * game->map_length)
 	{
-		if (!check_char(game,
-				game->map_data[i / game->map_length][i % game->map_length], i,
-			&check))
+		if (!check_char(game, game->map_data[i / game->map_length][i
+				% game->map_length], i, &check))
 			return (0);
 		i++;
 	}
-	game->collectibles = check.collectibles;
+	game->collectibles = check.collectibles_count;
 	return (check.player_count == 1 && check.exit_count == 1
-		&& check.collectibles > 0);
+		&& check.collectibles_count > 0);
 }
 
 int	validate_map_structure(t_game *game)
@@ -40,28 +39,12 @@ int	validate_map_structure(t_game *game)
 	i = 0;
 	while (i < game->map_height)
 	{
-		if (game->map_data[i][0] != WALL
-			|| game->map_data[i][game->map_length - 1] != WALL)
+		if (game->map_data[i][0] != WALL || game->map_data[i][game->map_length
+			- 1] != WALL)
 			return (0);
 		i++;
 	}
 	return (check_horizontal_walls(game));
-}
-
-int	validate_path(t_game *game)
-{
-	int		result;
-	int		i;
-	char	**visited;
-
-	i = 0;
-	if (!allocate_visited(game, &visited))
-		return (0);
-	result = flood_fill(game, game->player_pos_x, game->player_pos_y, visited);
-	while (i < game->map_height)
-		free(visited[i++]);
-	free(visited);
-	return (result);
 }
 
 int	read_map_file(t_game *game, const char *filename)
@@ -94,6 +77,9 @@ int	read_map_file(t_game *game, const char *filename)
 
 int	parse_map(t_game *game, const char *filename)
 {
+	char	c;
+
+	c = 'X';
 	game->map_data = (char **)malloc(MAX_MAP_HEIGHT * sizeof(char *));
 	if (!game->map_data)
 		return (0);
@@ -101,6 +87,5 @@ int	parse_map(t_game *game, const char *filename)
 	game->map_length = 0;
 	if (!read_map_file(game, filename))
 		return (0);
-	return (validate_map_chars(game) && validate_map_structure(game)
-		&& validate_path(game));
+	return (validate_map_chars(game) && validate_map_structure(game));
 }

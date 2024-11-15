@@ -6,7 +6,7 @@
 /*   By: tbolsako <tbolsako@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 14:04:08 by tbolsako          #+#    #+#             */
-/*   Updated: 2024/11/12 12:03:54 by tbolsako         ###   ########.fr       */
+/*   Updated: 2024/11/14 14:50:37 by tbolsako         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	move_player(t_game *game, int new_x, int new_y)
 		game->player_pos_x = new_x;
 		game->player_pos_y = new_y;
 		game->steps++;
-		ft_printf("%d\n", game->steps);
+		printf("%d\n", game->steps);
 	}
 	if (game->map_data[new_y][new_x] == EXIT)
 	{

@@ -6,14 +6,14 @@
 #    By: tbolsako <tbolsako@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/03 16:10:45 by tbolsako          #+#    #+#              #
-#    Updated: 2024/11/12 08:57:57 by tbolsako         ###   ########.fr        #
+#    Updated: 2024/11/14 14:43:40 by tbolsako         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = so_long
 SRC = src/main.c src/cleanup.c src/init_game.c src/map_parser.c \
 		src/map_parser_helper.c src/pl_movement.c src/render.c \
-		src/render_helper.c src/utils.c
+		src/render_helper.c src/utils.c src/flood_fill_helper.c 
 OBJECTS = $(SRC:.c=.o)
 FLAGS = -Wall -Wextra -Werror
 CC = cc

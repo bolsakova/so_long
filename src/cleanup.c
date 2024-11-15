@@ -6,11 +6,24 @@
 /*   By: tbolsako <tbolsako@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 14:40:12 by tbolsako          #+#    #+#             */
-/*   Updated: 2024/11/12 08:06:35 by tbolsako         ###   ########.fr       */
+/*   Updated: 2024/11/14 14:25:00 by tbolsako         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+void	free_array_1(char **map)
+{
+	int	i;
+
+	i = 0;
+	while (map && map[i])
+	{
+		free(map[i]);
+		i++;
+	}
+	free(map);
+}
 
 void	free_array(char **map)
 {

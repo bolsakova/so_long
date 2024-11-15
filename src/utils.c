@@ -6,7 +6,7 @@
 /*   By: tbolsako <tbolsako@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 17:26:15 by tbolsako          #+#    #+#             */
-/*   Updated: 2024/11/12 09:22:32 by tbolsako         ###   ########.fr       */
+/*   Updated: 2024/11/14 14:35:12 by tbolsako         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,18 +50,4 @@ void	render_textures(t_game *game, t_render *render)
 		game->img_wall = mlx_texture_to_image(render->mlx, game->t_wall);
 	if (!game->img_empty)
 		game->img_empty = mlx_texture_to_image(render->mlx, game->t_empty);
-}
-
-int	flood_fill(t_game *game, int x, int y, char **visit)
-{
-	if (x < 0 || y < 0 || x >= game->map_length || y >= game->map_height
-		|| game->map_data[y][x] == WALL || visit[y][x])
-		return (0);
-	visit[y][x] = 1;
-	if (game->map_data[y][x] == EXIT)
-		return (1);
-	return (flood_fill(game, x + 1, y, visit)
-		|| flood_fill(game, x - 1, y, visit)
-		|| flood_fill(game, x, y + 1, visit)
-		|| flood_fill(game, x, y - 1, visit));
 }
